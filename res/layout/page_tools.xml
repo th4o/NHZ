@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+    
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp" >
+        
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#111"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="@string/alias"
+            />
+        
+        <Button android:id="@+id/btn_alias_check"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:textColor="#111"
+            android:textSize="14dp"
+            android:text="@string/check"
+            />
+
+        <Button android:id="@+id/btn_alias_assign"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#111"
+            android:textSize="14dp"
+            android:text="@string/assign"
+            />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <CheckBox
+            android:id="@+id/check_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/notification"
+            android:textColor="#111"
+            android:textSize="14dp" />
+
+        <CheckBox
+            android:layout_marginLeft="40dp"
+            android:id="@+id/check_vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#111"
+            android:textSize="14dp"
+            android:text="@string/vibrate" />
+        
+        <LinearLayout android:id="@+id/layout_interval"
+            android:layout_marginLeft="40dp"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/interval"
+                android:textSize="14dp"
+                android:textColor="#111"
+                />
+            
+            <Spinner
+                android:layout_marginLeft="10dp"
+                android:id="@+id/spinner_interval"
+                android:layout_width="fill_parent"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+    
+</LinearLayout>
+</ScrollView>
+
+</LinearLayout>

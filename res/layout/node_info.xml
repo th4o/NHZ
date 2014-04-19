@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/node_info_bar"
+    android:layout_width="fill_parent"
+    android:layout_height="44dp"
+    android:background="#E6E6E6"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <View
+        android:id="@+id/view_state"
+        android:layout_width="127dp"
+        android:layout_height="40dp"
+        android:background="@drawable/icon_offline" />
+
+    <TextView
+        android:id="@+id/text_node_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_weight="1"
+        android:gravity="bottom|left"
+        android:text="@string/default_ip"
+        android:textColor="#000000" />
+    
+    <ImageButton
+        android:id="@+id/btn_change_node"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/settings" />
+
+</LinearLayout>
