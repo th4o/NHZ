@@ -55,7 +55,7 @@ public class SendCoin {
         byte type = NHZTransaction.TYPE_PAYMENT;
         byte subtype = NHZTransaction.SUBTYPE_PAYMENT_ORDINARY_PAYMENT;
         int timestamp = nodeContext.getTimestamp();
-        short deadline = 1500;
+        short deadline = 900;
         byte[] senderPublicKey = Crypto.getPublicKey(secret);
         long recipient = new BigInteger(recipientStr).longValue();;
         int amount = (int)amountF;
@@ -66,13 +66,9 @@ public class SendCoin {
         NHZTransaction orgTransaction = new NHZTransaction(type, subtype, timestamp, deadline, 
                 senderPublicKey, recipient, amount, fee, referencedTransaction, signature);
         orgTransaction.sign(secret);
-        String transactionBytes = NHZUtil.convert(orgTransaction.getBytes());
-
         String ip = nodeContext.getIP();
         String base_url = "http://" + ip + ":7776";
-        String httpUrl = String.format(
-                "%s/nhz?requestType=broadcastTransaction&transactionBytes=%s", 
-                base_url, transactionBytes);
+        String httpUrl = base_url + "/nhz?requestType=sendMoney&secretPhrase=" + secret + "&recipient=" + recipientStr + "&amount=" + amount + "&fee=1&deadline=" + deadline;
 
         try {
             HttpURLConnection conn = (HttpURLConnection)new URL(httpUrl).openConnection();

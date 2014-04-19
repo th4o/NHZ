@@ -54,6 +54,7 @@ public class NodesManager {
     public void removeNode(int index){
         mNodeIPList.remove(index);
         if ( 0 == mNodeIPList.size() ){
+        	mNodeIPList.add("78.46.32.25");
             mNodeIPList.add("54.186.235.178");
         }
     }
@@ -87,6 +88,7 @@ public class NodesManager {
         }
         
         if ( 0 == mNodeIPList.size() ){
+        	mNodeIPList.add("78.46.32.25");
             mNodeIPList.add("54.186.235.178");
         }
     }

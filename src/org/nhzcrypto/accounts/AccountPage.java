@@ -25,7 +25,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import com.other.util.QRCode;
 
 public class AccountPage {
@@ -166,21 +167,22 @@ public class AccountPage {
             @Override
             public boolean onResult(boolean success, String code) {
                 if ( success ){
-                    Account acc = QRCodeParse.genAccount(code);
-                    if ( null == acc ){
-                        String msg = (String) mContext.getText(R.string.qrcode_no_acc);
-                        msg += "   \r\n\r\n" + code;
-                        new AlertDialog.Builder(mContext)
-                                .setMessage(msg)
-                                .setNegativeButton(R.string.back, null)
-                                .show();
-                        return false;
+                    String regex = "^\\d+$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(code);
+                    if (matcher.find()) {
+                        AccountsManager.sharedInstance().addAccount(mContext, code, "QR");
+                        update(AccountsManager.sharedInstance().getAccountList().getLast());
+                        return true;
                     }
-                    AccountsManager.sharedInstance().addAccount(mContext, acc);
-                    update(AccountsManager.sharedInstance().getAccountList().getLast());
-                    return true;
+                    String msg = (String) mContext.getText(R.string.qrcode_no_acc);
+                    msg += "   \r\n\r\n" + code;
+                    new AlertDialog.Builder(mContext)
+                            .setMessage(msg)
+                            .setNegativeButton(R.string.back, null)
+                            .show();
+                    return false;
                 }
-                
                 return false;
             }
         });

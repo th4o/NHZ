@@ -1,9 +1,12 @@
 package org.nhzcrypto.addresses;
 
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.Zxing.CaptureActivity;
 import org.nhzcrypto.accounts.Account;
+import org.nhzcrypto.accounts.AccountsManager;
 import org.nhzcrypto.alias.Alias;
 import org.nhzcrypto.alias.AliasInputDialog;
 import org.nhzcrypto.droid.QRCodeParse;
@@ -133,19 +136,21 @@ public class AddressesPage {
             @Override
             public boolean onResult(boolean success, String code) {
                 if ( success ){
-                    Account acc = QRCodeParse.genAccount(code);
-                    if ( null == acc ){
-                        String msg = (String) mContext.getText(R.string.qrcode_no_acc);
-                        msg += "   \r\n\r\n" + code;
-                        new AlertDialog.Builder(mContext)
-                                .setMessage(msg)
-                                .setNegativeButton(R.string.back, null)
-                                .show();
-                        return false;
+                    String regex = "^\\d+$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(code);
+                    if (matcher.find()) {
+                        AddressesManager.sharedInstance().addAccount(mContext, code, "QR");
+                        mAddressesListView.notifyDataSetInvalidated();
+                        return true;
                     }
-                    AddressesManager.sharedInstance().addAccount(mContext, acc);
-                    mAddressesListView.notifyDataSetInvalidated();
-                    return true;
+                    String msg = (String) mContext.getText(R.string.qrcode_no_acc);
+                    msg += "   \r\n\r\n" + code;
+                    new AlertDialog.Builder(mContext)
+                            .setMessage(msg)
+                            .setNegativeButton(R.string.back, null)
+                            .show();
+                    return false;                	
                 }
                 
                 return false;

@@ -107,7 +107,7 @@
 
     <string name="qrcode">QRCode</string>
     <string name="qrcode_scan">QRCode scan</string>
-    <string name="qrcode_no_acc">QRCode doesn`t contain a NHZ account!</string>
+    <string name="qrcode_no_acc">QRCode doesn`t contain an NHZ account!</string>
     
     <string name="urltext"><a href="http://www.nhzcrypto.org/">www.nhzcrypto.org</a></string>
     
